@@ -1,4 +1,4 @@
-package com.imobiliaria.CadastroImobiliaria;
+package com.imobiliaria.CadastroImobiliaria.Imobiliarias;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -8,11 +8,16 @@ import jakarta.persistence.Table;
 public class ImobiliariaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String nome;
-    String CNPJ;
-    int telefone;
-    String cidade;
+    private Long id;
+    private String nome;
+    private String CNPJ;
+    private int telefone;
+    private  String cidade;
+    private List<CasasModel> casas;
+    // @ManyToOne - uma casa tem uma imobiliaria
+    // @OneToMany - Uma imobiliarias tem várias casas
+    @OneToMany(mappedBy = "casa") // Uma imobiliaria pode ter várias casas.
+    private CasasModel casas; // Na classe Imobiliaria eu só vou ter uma casa.
     //Construtura vazio;
     public ImobiliariaModel(){}
     //Contrutor cheio
