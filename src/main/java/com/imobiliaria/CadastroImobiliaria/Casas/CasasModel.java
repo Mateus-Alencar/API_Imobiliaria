@@ -7,13 +7,16 @@ import lombok.Data; // Gera automaticamente getters, setters, toString, equals e
 import lombok.NoArgsConstructor; // Gera um construtor sem parâmetros (padrão)
 
 @Entity
-@Table (name = "tb_casas")
+@Table(name = "tb_casas")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CasasModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String cidade;
-    private String Bairro;
+    private String bairro;
     private double valor;
     // @ManyToOne - uma casa para várias imobiliarias
     // @OneToMany - várias  casas para várias imobiliarias.
