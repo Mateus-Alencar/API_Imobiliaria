@@ -22,6 +22,9 @@ public class ImobiliariaModel {
     private String telefone;  // Melhor usar String para números de telefone
     private String cidade;
 
+    // @ManyToOne - uma casa para várias imobiliarias
+    // @OneToMany - várias  casas para várias imobiliarias
+
     // Uma imobiliária pode ter várias casas
     @OneToMany(mappedBy = "imobiliaria")
     private List<CasasModel> casas;
