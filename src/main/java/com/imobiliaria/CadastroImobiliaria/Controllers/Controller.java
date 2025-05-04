@@ -1,14 +1,13 @@
 package com.imobiliaria.CadastroImobiliaria.Controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.imobiliaria.CadastroImobiliaria.Imobiliarias.ImobiliariaService;
+import com.imobiliaria.CadastroImobiliaria.Imobiliarias.ImobiliariaModel;
 import com.imobiliaria.CadastroImobiliaria.Casas.CasaService;
 import com.imobiliaria.CadastroImobiliaria.Casas.CasasModel;
 
-import com.imobiliaria.CadastroImobiliaria.Imobiliarias.ImobiliariaService;
-import com.imobiliaria.CadastroImobiliaria.Imobiliarias.ImobiliariaModel;
 
 import java.util.List;
 //@RestController -> É uma anotação que transforma a classe em uma API que responde com dados (JSON),
@@ -17,7 +16,7 @@ import java.util.List;
 
 //A anotação @RequestMapping no Spring serve para mapear requisições HTTP para 
 // métodos ou classes do código.
-@RequestMapping
+@RequestMapping("/api")
 public class Controller {
     //GetMapping --> Puxar informações
     //PostMapping --> Mandar informações
@@ -25,7 +24,7 @@ public class Controller {
     //PatchMapping --> Alterar informações
     //DeleteMapping --> Deletar informações
 
-    @GetMapping("msg")
+    @GetMapping("/msg")
     public String msg(){
         return "Imobiliaria - API";
     }
@@ -33,26 +32,27 @@ public class Controller {
     @Autowired
     private ImobiliariaService imobiliariaService;
 
-    @GetMapping("/api/imobiliarias")
+    @GetMapping("/imobiliarias")
     public List<ImobiliariaModel> listarTodas() {
         return imobiliariaService.listarTodas();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/imobiliarias/{id}")
     public ImobiliariaModel buscarPorId(@PathVariable Long id) {
         return imobiliariaService.buscarPorId(id);
     }
 
+    // INJEÇÃO DE DEPENDÊNCIA DO SERVICE DE CASAS
     @Autowired
-    private CasaRepository casaRepository;
+    private CasaService casaService;
 
-    @GetMapping("/api/casas")
-    public List<CasasModel> listarTodas() {
-        return CasaService.listarTodas();
+    @GetMapping("/casas")
+    public List<CasasModel> listarCasas() {
+        return casaService.listarTodas();
     }
 
     @GetMapping("/casas/{id}")
-    public CasasModel buscarPorId(@PathVariable Long id) {
-        return CasaService.buscarPorId(id);
+    public CasasModel buscarCasaPorId(@PathVariable Long id) {
+        return casaService.buscarPorId(id);
     }
 }

@@ -1,7 +1,6 @@
-package com.imobiliaria.CadastroImobiliaria.Services;
+package com.imobiliaria.CadastroImobiliaria.Imobiliarias;
 
-import com.imobiliaria.CadastroImobiliaria.Imobiliarias.ImobiliariaModel;
-import com.imobiliaria.CadastroImobiliaria.Imobiliarias.ImobiliariaRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
